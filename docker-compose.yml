@@ -1,38 +1,28 @@
-version: '3.8'
 services:
   web:
     build: .
     ports:
       - "8501:8501"
     environment:
-      - DB_NAME=${DB_NAME}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=db
+      - DB_NAME=Sample
+      - DB_USER=postgres
+      - DB_PASSWORD=root
+      - DB_HOST=db    # This should match the database service name
       - DB_PORT=5432
       - OPENAI_API_KEY=${OPENAI_API_KEY}
     depends_on:
       - db
-    networks:
-      - app-network
 
   db:
     image: postgres:13
     environment:
-      - POSTGRES_DB=${DB_NAME}
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - POSTGRES_DB=Sample
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
     ports:
       - "5432:5432"
-    networks:
-      - app-network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
 volumes:
   postgres_data:
-
-networks:
-  app-network:
-    driver: bridge
-  ###
