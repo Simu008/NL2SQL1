@@ -6,13 +6,12 @@ import streamlit as st
 from typing import List, Tuple, Dict
 from openai import OpenAI
 
-# Replace the hardcoded values with environment variables
-DB_NAME = os.getenv("DB_NAME", "Sample")
-DB_USER = os.getenv("DB_USER", "postgres")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "root")
-DB_HOST = os.getenv("DB_HOST", "db")  # Changed from localhost to db
-DB_PORT = os.getenv("DB_PORT", "5432")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "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")
+DB_NAME = "Sample"
+DB_USER = "postgres"
+DB_PASSWORD = "root"
+DB_HOST = "localhost"
+DB_PORT = "5432"
+OPENAI_API_KEY = "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"
 
 SCHEMA = """
 Table: department
@@ -288,4 +287,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-###
